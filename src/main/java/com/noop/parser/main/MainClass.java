@@ -1,7 +1,6 @@
 package com.noop.parser.main;
 
 import com.mpatric.mp3agic.*;
-import com.noop.parser.utils.ConsoleReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,59 +52,32 @@ public class MainClass {
         }*/
 
 
-        String input = ConsoleReader.readString();
+/*        String input = ConsoleReader.readString();
         MainClass mainClass = new MainClass();
-        mainClass.copyTagsFromV2toV1(getMp3WithoutId3v1(getAllMp3Files(input)), getAllMp3Files(input));
+        mainClass.copyTagsFromV2toV1(getMp3WithoutId3v1(getAllMp3Files(input)), getAllMp3Files(input));*/
 
 
 
-        for (Mp3File file : getMp3WithoutId3v1(getAllMp3Files(ConsoleReader.readString()))) {
+/*        for (Mp3File file : getMp3WithoutId3v1(getAllMp3Files(ConsoleReader.readString()))) {
             System.out.println(String.format("File without Id3v1 Tag: %s", file.getFilename()));
-        }
+
+        for (Mp3File file : getMp3WithoutImage(getAllMp3Files(ConsoleReader.readString()))) {
+            System.out.println(String.format("File without Image: %s", file.getFilename()));
+        }}*/
+
+/*        ImageDownloader imageDownloader = new ImageDownloader();
+        imageDownloader.saveImageFromURLLocally("https://toastedbits.com/wp-content/uploads/2017/02/cropped-20170214_PuzzleKeeper_1137.jpg", "C:/Users/thoruk/Music/images", "newImge");*/
+
 
     }
 
-    public static List<Mp3File> getAllMp3Files(String path) {
-        File dir = new File(path);
-        File[] files = dir.listFiles();
-        Mp3File mp3File;
-        List<Mp3File> mp3Files = new ArrayList<>();
-        try {
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile() && (file.getName().contains(".mp3") || file.getName().contains(".flac"))) {
-                        mp3File = new Mp3File(file.getPath());
-                        mp3Files.add(mp3File);
-                    }
-                }
-            }
-        } catch (UnsupportedTagException | IOException | InvalidDataException e) {
-            e.printStackTrace();
-        }
-        return mp3Files;
-    }
 
-    public static List<Mp3File> getMp3WithoutId3v1(List<Mp3File> list) {
-        List<Mp3File> emptyMp3Files = new ArrayList<>();
-        for (Mp3File file : list) {
-            if (file.getId3v1Tag().getArtist().isEmpty() || file.getId3v1Tag().getTitle().isEmpty()) {
-                emptyMp3Files.add(file);
-            }
 
-        }
-        return emptyMp3Files;
-    }
 
-    public static List<Mp3File> getMp3WithoutId3v2(List<Mp3File> list) {
-        List<Mp3File> emptyMp3Files = new ArrayList<>();
-        for (Mp3File file : list) {
-            if (file.getId3v2Tag().getArtist().isEmpty() || file.getId3v2Tag().getTitle().isEmpty()) {
-                emptyMp3Files.add(file);
-            }
 
-        }
-        return emptyMp3Files;
-    }
+
+
+
 
     public void copyTagsFromV2toV1(List<Mp3File> v1, List<Mp3File> v2) throws IOException, NotSupportedException {
 
@@ -117,20 +89,19 @@ public class MainClass {
                     String artist = file.getId3v2Tag().getArtist();
                     String title = file.getId3v2Tag().getTitle();
                     String album = file.getId3v2Tag().getAlbum();
-                    if (artist != null){
+                    if (artist != null) {
                         id3v1Tag.setArtist(artist);
                     }
-                    if (title != null){
+                    if (title != null) {
                         id3v1Tag.setTitle(title);
                     }
-                    if (album != null){
+                    if (album != null) {
                         id3v1Tag.setAlbum(album);
                     }
-                    emptyFile.save(String.format("%s - %s", artist, title));
+                    emptyFile.save(String.format("target/%s - %s.mp3", artist, title));
                 }
             }
         }
     }
-
 
 }

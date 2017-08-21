@@ -6,7 +6,7 @@ import java.util.Date;
 public class DateTimeUtil {
 
     protected static String getDatetimeStamp() {
-        SimpleDateFormat sdf = new SimpleDateFormat("_yyyyMMdd_HHmm");
+        SimpleDateFormat sdf = new SimpleDateFormat("_yyyyMMdd_HHmmSS");
         return sdf.format(new Date());
     }
 }

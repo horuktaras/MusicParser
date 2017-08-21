@@ -16,5 +16,6 @@ dependencies {
     compile 'fm.last:coverartarchive-api:2.1.0'
     compile 'fm.last:musicbrainz-data:3.1.0'
     compile 'com.github.tchoulihan:musicbrainz-tagger:1.3.1'
+    compile 'com.google.code.gson:gson:2.6.2'
 
 }

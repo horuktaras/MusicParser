@@ -19,7 +19,7 @@ public class Mp3Lists {
         try {
             if (files != null) {
                 for (File file : files) {
-                    if (file.isFile() && (file.getName().contains(".mp3") || file.getName().contains(".flac"))) {
+                    if (file.isFile() && (file.getName().contains(".mp3"))) {
                         mp3File = new Mp3File(file.getPath());
                         mp3Files.add(mp3File);
                     }

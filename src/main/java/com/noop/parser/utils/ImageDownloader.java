@@ -1,7 +1,5 @@
 package com.noop.parser.utils;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,11 +9,11 @@ import java.nio.file.Paths;
 
 import static com.noop.parser.utils.DateTimeUtil.getDatetimeStamp;
 
-public class ImageDownloader extends AbstractImages {
+public class ImageDownloader extends AbstractVariables {
 
     public static void saveImageFromURLLocally(String url, String saveTo, String newFilename) {
         try (InputStream in = new URL(url).openStream()) {
-            Files.copy(in, Paths.get(saveTo + File.separatorChar + newFilename + getDatetimeStamp() + JPEG));
+            Files.copy(in, Paths.get(saveTo + "\\" + newFilename + getDatetimeStamp() + JPEG));
         } catch (IOException e) {
             e.printStackTrace();
         }
